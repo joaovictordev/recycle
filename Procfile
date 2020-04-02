@@ -1,1 +1,1 @@
-web: adonis serve
+web: yarn start
