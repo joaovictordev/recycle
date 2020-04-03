@@ -5,7 +5,10 @@ const Residue = use("App/Models/Residue");
 class ResidueController {
 
   async index({ auth }) {
-    const residues = Residue.query()
+    const residues = Residue
+      .query()
+      .with('enterprise')
+      .with('sector')
       .where("user_id", "=", auth.user.id)
       .fetch();
 
