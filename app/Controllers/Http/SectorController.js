@@ -3,9 +3,11 @@
 const Sector = use("App/Models/Sector");
 
 class SectorController {
-  async index({ auth }) {
+  async index({ request }) {
+    const { enterprise_id } = request.all();
+
     const sectors = Sector.query()
-      .where("user_id", "=", auth.user.id)
+      .where("enterprise_id", "=", enterprise_id)
       .fetch();
 
     return sectors;
