@@ -3,6 +3,13 @@
 const Sector = use("App/Models/Sector");
 
 class SectorController {
+  async index({ auth }) {
+    const sectors = Sector.query()
+      .where("user_id", "=", auth.user.id)
+      .fetch();
+
+    return sectors;
+  }
 
   async store({ request }) {
 
